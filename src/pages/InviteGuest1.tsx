@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const STORAGE_KEY = 'rsvp-guest-1'
@@ -5,23 +6,29 @@ const STORAGE_KEY = 'rsvp-guest-1'
 export default function InviteGuest1() {
   const navigate = useNavigate()
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
   function handleConfirm() {
     localStorage.setItem(STORAGE_KEY, 'true')
     navigate('/invite-guest-1/confirmed')
   }
 
   return (
-    <div className="page-container">
-      <div className="flex flex-col px-8 pb-8" style={{ gap: 24 }}>
+    <div className="page-container" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Top content */}
+      <div className="flex flex-col px-8" style={{ paddingTop: 48 }}>
         {/* Logo */}
-        <div className="flex justify-center items-center" style={{ height: 140 }}>
-          <img src="/logo.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
+        <div className="flex justify-center">
+          <img src="/rolex/assets/logo-3d.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
         </div>
 
         {/* Guest name */}
         <p
           className="font-kingdom text-center"
-          style={{ fontSize: 28, lineHeight: '35px', color: '#111111', marginTop: -24 }}
+          style={{ fontSize: 28, lineHeight: '35px', color: '#111111', marginTop: 48 }}
         >
           Monsieur<br />Adrien Van Delft
         </p>
@@ -30,6 +37,7 @@ export default function InviteGuest1() {
         <div
           className="flex flex-col bg-white"
           style={{
+            marginTop: 24,
             borderRadius: 32,
             padding: '12px 12px 24px 12px',
             gap: 16,
@@ -61,8 +69,10 @@ export default function InviteGuest1() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* CTA */}
+      {/* CTA — 24px from bottom */}
+      <div className="px-8" style={{ marginTop: 'auto', paddingBottom: 24 }}>
         <button
           onClick={handleConfirm}
           className="btn-cta"

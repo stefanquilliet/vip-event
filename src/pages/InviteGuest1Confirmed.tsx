@@ -63,22 +63,22 @@ export default function InviteGuest1Confirmed() {
   return (
     <div className="page-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Top content */}
-      <div className="flex flex-col px-8" style={{ gap: 24 }}>
+      <div className="flex flex-col px-8" style={{ paddingTop: 48 }}>
         {/* Logo */}
-        <div className="flex justify-center items-center" style={{ height: 140 }}>
-          <img src="/logo.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
+        <div className="flex justify-center">
+          <img src="/rolex/assets/logo-3d.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
         </div>
 
         {/* Confirmed heading */}
         <p
           className="font-kingdom text-center"
-          style={{ fontSize: 28, lineHeight: '35px', color: '#111111' }}
+          style={{ fontSize: 28, lineHeight: '35px', color: '#111111', marginTop: 48 }}
         >
           Confirmé
         </p>
 
         {/* Body text */}
-        <div className="flex flex-col" style={{ gap: 12 }}>
+        <div className="flex flex-col" style={{ gap: 12, marginTop: 12 }}>
           <p style={{ fontSize: 18, lineHeight: '26px', color: '#111111', textAlign: 'center', fontFamily: 'Helvetica Neue, Helvetica, sans-serif' }}>
             Notre équipe vous contactera sous 2 jours pour coordonner les détails de votre visite.
           </p>
