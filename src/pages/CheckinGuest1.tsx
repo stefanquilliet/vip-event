@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const STORAGE_KEY = 'checkin-guest-1'
 
 export default function CheckinGuest1() {
   const cardRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, 'true')
@@ -61,6 +63,7 @@ export default function CheckinGuest1() {
     >
       <div
         ref={cardRef}
+        onClick={() => navigate('/welcome-guest-1')}
         style={{
           width: 265,
           height: 396,
@@ -72,6 +75,7 @@ export default function CheckinGuest1() {
           alignItems: 'center',
           justifyContent: 'center',
           flexShrink: 0,
+          cursor: 'pointer',
         }}
       >
         <img

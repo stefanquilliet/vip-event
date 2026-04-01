@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function InviteGuest1Confirmed() {
   const cardRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -88,6 +90,7 @@ export default function InviteGuest1Confirmed() {
       <div style={{ marginTop: 48, display: 'flex', justifyContent: 'center' }}>
         <div
           ref={cardRef}
+          onClick={() => navigate('/checkin-guest-1')}
           style={{
             width: 265,
             height: 396,
@@ -99,6 +102,7 @@ export default function InviteGuest1Confirmed() {
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
+            cursor: 'pointer',
           }}
         >
           <img
