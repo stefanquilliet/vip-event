@@ -23,9 +23,13 @@ export default function InviteGuest1Confirmed() {
       const shadowY = 4 - tiltY * 10
       const shadowBlur = 24 + Math.abs(tiltX) * 16
 
+      const moveX = tiltX * 8
+      const moveY = tiltY * 6
+
       if (cardRef.current) {
         cardRef.current.style.background = `linear-gradient(${angle}deg, #B9966F, #FCF6E9)`
         cardRef.current.style.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, 0.12)`
+        cardRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`
       }
     }
 
@@ -94,6 +98,7 @@ export default function InviteGuest1Confirmed() {
             borderRadius: 32,
             background: 'linear-gradient(45deg, #B9966F, #FCF6E9)',
             boxShadow: '-4px 4px 32px rgba(0, 0, 0, 0.12)',
+            transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
