@@ -39,3 +39,11 @@ body {
 .btn-cta {
   background: linear-gradient(135deg, #136941, #1C8A57);
 }
+
+.btn-cta:active {
+  background: #115C39;
+}
+
+.btn-cta:active span {
+  opacity: 0.7;
+}

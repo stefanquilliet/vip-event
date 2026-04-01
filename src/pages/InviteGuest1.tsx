@@ -88,7 +88,7 @@ export default function InviteGuest1() {
             cursor: 'pointer',
           }}
         >
-          Je confirme ma venue
+          <span>Confirmer votre venue</span>
         </button>
       </div>
     </div>
