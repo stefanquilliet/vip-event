@@ -33,25 +33,23 @@ export default function CheckinGuest1() {
       }
     }
 
-    const startListening = () => window.addEventListener('deviceorientation', handleOrientation)
-
     const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }
     if (typeof DOE.requestPermission === 'function') {
-      const onTap = async () => {
-        const permission = await DOE.requestPermission!()
-        if (permission === 'granted') startListening()
-        document.removeEventListener('click', onTap)
-        document.removeEventListener('touchstart', onTap)
+      const requestAndListen = async () => {
+        try {
+          const permission = await DOE.requestPermission!()
+          if (permission === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation)
+          }
+        } catch { /* permission denied */ }
       }
-      document.addEventListener('click', onTap)
-      document.addEventListener('touchstart', onTap)
+      document.addEventListener('click', requestAndListen, { once: true })
       return () => {
-        document.removeEventListener('click', onTap)
-        document.removeEventListener('touchstart', onTap)
+        document.removeEventListener('click', requestAndListen)
         window.removeEventListener('deviceorientation', handleOrientation)
       }
     } else {
-      startListening()
+      window.addEventListener('deviceorientation', handleOrientation)
       return () => window.removeEventListener('deviceorientation', handleOrientation)
     }
   }, [])

@@ -33,29 +33,25 @@ export default function InviteGuest1Confirmed() {
       }
     }
 
-    const startListening = () => {
-      window.addEventListener('deviceorientation', handleOrientation)
-    }
-
     const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }
     if (typeof DOE.requestPermission === 'function') {
-      // iOS 13+: must be triggered by a user gesture
-      const onTap = async () => {
-        const permission = await DOE.requestPermission!()
-        if (permission === 'granted') startListening()
-        document.removeEventListener('click', onTap)
-        document.removeEventListener('touchstart', onTap)
+      // iOS 13+: must be triggered by a user gesture — click only, once
+      const requestAndListen = async () => {
+        try {
+          const permission = await DOE.requestPermission!()
+          if (permission === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation)
+          }
+        } catch { /* permission denied */ }
       }
-      document.addEventListener('click', onTap)
-      document.addEventListener('touchstart', onTap)
+      document.addEventListener('click', requestAndListen, { once: true })
       return () => {
-        document.removeEventListener('click', onTap)
-        document.removeEventListener('touchstart', onTap)
+        document.removeEventListener('click', requestAndListen)
         window.removeEventListener('deviceorientation', handleOrientation)
       }
     } else {
-      // Android / non-iOS
-      startListening()
+      // Android / desktop — no permission needed
+      window.addEventListener('deviceorientation', handleOrientation)
       return () => window.removeEventListener('deviceorientation', handleOrientation)
     }
   }, [])
