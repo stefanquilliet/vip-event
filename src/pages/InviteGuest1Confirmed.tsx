@@ -10,17 +10,15 @@ export default function InviteGuest1Confirmed() {
 
   useEffect(() => {
     const handleOrientation = (e: DeviceOrientationEvent) => {
-      const gamma = e.gamma ?? 0 // left/right tilt: -90 to 90
-      const beta = e.beta ?? 45  // front/back tilt: -180 to 180 (natural hold ~45°)
+      const gamma = e.gamma ?? 0
+      const beta = e.beta ?? 45
 
-      // Normalize to -1..1 range
       const tiltX = Math.max(-45, Math.min(45, gamma)) / 45
       const tiltY = Math.max(-45, Math.min(45, beta - 45)) / 45
 
-      // Gradient angle: base 135deg, shifts with tilt
-      const angle = 135 + tiltX * 25 + tiltY * 15
+      // Base angle 45deg = #B9966F at bottom-left, #FCF6E9 at top-right
+      const angle = 45 + tiltX * 25 + tiltY * 15
 
-      // Shadow shifts opposite to light source
       const shadowX = -4 + tiltX * 10
       const shadowY = 4 - tiltY * 10
       const shadowBlur = 24 + Math.abs(tiltX) * 16
@@ -31,21 +29,31 @@ export default function InviteGuest1Confirmed() {
       }
     }
 
-    // iOS 13+ requires permission
-    const requestPermission = async () => {
-      const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }
-      if (typeof DOE.requestPermission === 'function') {
-        const permission = await DOE.requestPermission()
-        if (permission === 'granted') {
-          window.addEventListener('deviceorientation', handleOrientation)
-        }
-      } else {
-        window.addEventListener('deviceorientation', handleOrientation)
-      }
+    const startListening = () => {
+      window.addEventListener('deviceorientation', handleOrientation)
     }
 
-    requestPermission()
-    return () => window.removeEventListener('deviceorientation', handleOrientation)
+    const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }
+    if (typeof DOE.requestPermission === 'function') {
+      // iOS 13+: must be triggered by a user gesture
+      const onTap = async () => {
+        const permission = await DOE.requestPermission!()
+        if (permission === 'granted') startListening()
+        document.removeEventListener('click', onTap)
+        document.removeEventListener('touchstart', onTap)
+      }
+      document.addEventListener('click', onTap)
+      document.addEventListener('touchstart', onTap)
+      return () => {
+        document.removeEventListener('click', onTap)
+        document.removeEventListener('touchstart', onTap)
+        window.removeEventListener('deviceorientation', handleOrientation)
+      }
+    } else {
+      // Android / non-iOS
+      startListening()
+      return () => window.removeEventListener('deviceorientation', handleOrientation)
+    }
   }, [])
 
   return (
@@ -84,7 +92,7 @@ export default function InviteGuest1Confirmed() {
             width: 265,
             height: 396,
             borderRadius: 32,
-            background: 'linear-gradient(135deg, #B9966F, #FCF6E9)',
+            background: 'linear-gradient(45deg, #B9966F, #FCF6E9)',
             boxShadow: '-4px 4px 32px rgba(0, 0, 0, 0.12)',
             display: 'flex',
             alignItems: 'center',
