@@ -1,6 +1,13 @@
+import { useEffect } from 'react'
+
 export default function InviteGuest1Confirmed() {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
   return (
-    <div className="page-container" style={{ minHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <div className="page-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Top content */}
       <div className="flex flex-col px-8" style={{ gap: 24 }}>
         {/* Logo */}
