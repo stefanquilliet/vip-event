@@ -4,6 +4,8 @@ import InviteGuest1Confirmed from './pages/InviteGuest1Confirmed'
 import InviteGuest2 from './pages/InviteGuest2'
 import CheckinGuest1 from './pages/CheckinGuest1'
 import CheckinGuest2 from './pages/CheckinGuest2'
+import WelcomeGuest1 from './pages/WelcomeGuest1'
+import WelcomeGuest2 from './pages/WelcomeGuest2'
 
 export default function App() {
   return (
@@ -13,6 +15,8 @@ export default function App() {
       <Route path="/invite-guest-2" element={<InviteGuest2 />} />
       <Route path="/checkin-guest-1" element={<CheckinGuest1 />} />
       <Route path="/checkin-guest-2" element={<CheckinGuest2 />} />
+      <Route path="/welcome-guest-1" element={<WelcomeGuest1 />} />
+      <Route path="/welcome-guest-2" element={<WelcomeGuest2 />} />
       <Route
         path="*"
         element={

@@ -23,8 +23,8 @@ export default function CheckinGuest2() {
       const shadowX = -4 + tiltX * 10
       const shadowY = -4 - tiltY * 10
       const shadowBlur = 32 + Math.abs(tiltX) * 16
-      const moveX = tiltX * 4
-      const moveY = tiltY * 4
+      const moveX = tiltX * 6
+      const moveY = tiltY * 6
 
       if (cardRef.current) {
         cardRef.current.style.background = `linear-gradient(${angle}deg, #B9966F, #FCF6E9)`
