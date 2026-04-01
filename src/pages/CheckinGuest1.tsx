@@ -20,11 +20,9 @@ export default function CheckinGuest1() {
       const tiltY = Math.max(-45, Math.min(45, beta - 45)) / 45
 
       const angle = 45 + tiltX * 25 + tiltY * 15
-
       const shadowX = -4 + tiltX * 10
       const shadowY = -4 - tiltY * 10
       const shadowBlur = 32 + Math.abs(tiltX) * 16
-
       const moveX = tiltX * 4
       const moveY = tiltY * 4
 
@@ -35,9 +33,7 @@ export default function CheckinGuest1() {
       }
     }
 
-    const startListening = () => {
-      window.addEventListener('deviceorientation', handleOrientation)
-    }
+    const startListening = () => window.addEventListener('deviceorientation', handleOrientation)
 
     const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }
     if (typeof DOE.requestPermission === 'function') {
@@ -61,7 +57,10 @@ export default function CheckinGuest1() {
   }, [])
 
   return (
-    <div className="page-container" style={{ height: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div
+      className="page-container"
+      style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+    >
       <div
         ref={cardRef}
         style={{
@@ -83,6 +82,19 @@ export default function CheckinGuest1() {
           style={{ width: 29, height: 32, objectFit: 'contain', opacity: 0.5 }}
         />
       </div>
+      <p
+        style={{
+          marginTop: 32,
+          fontSize: 18,
+          lineHeight: '19.8px',
+          fontFamily: 'Helvetica, Arial, sans-serif',
+          color: '#111111',
+          opacity: 0.5,
+          textAlign: 'center',
+        }}
+      >
+        Présentez votre carte
+      </p>
     </div>
   )
 }
