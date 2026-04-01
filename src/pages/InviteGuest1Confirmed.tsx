@@ -61,7 +61,7 @@ export default function InviteGuest1Confirmed() {
   }, [])
 
   return (
-    <div className="page-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="page-container" style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
       {/* Top content */}
       <div className="flex flex-col px-8" style={{ paddingTop: 48 }}>
         {/* Logo */}
