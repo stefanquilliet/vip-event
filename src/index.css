@@ -20,9 +20,9 @@
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: linear-gradient(to bottom, #FFFFFF, #E4D7C8);
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
