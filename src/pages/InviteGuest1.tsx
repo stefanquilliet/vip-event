@@ -1,52 +1,86 @@
-import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const STORAGE_KEY = 'rsvp-guest-1'
 
 export default function InviteGuest1() {
-  const [confirmed, setConfirmed] = useState(false)
-
-  useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY) === 'true') {
-      setConfirmed(true)
-    }
-  }, [])
+  const navigate = useNavigate()
 
   function handleConfirm() {
     localStorage.setItem(STORAGE_KEY, 'true')
-    setConfirmed(true)
-  }
-
-  if (confirmed) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
-        <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">An Evening to Remember</p>
-        <h1 className="text-3xl font-semibold mb-4">See you there, Alice.</h1>
-        <p className="text-gray-600">Your attendance has been confirmed. We look forward to welcoming you.</p>
-      </div>
-    )
+    navigate('/invite-guest-1/confirmed')
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
-      <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">An Evening to Remember</p>
-      <h1 className="text-3xl font-semibold mb-2">Dear Alice,</h1>
-      <p className="text-gray-600 mb-8 max-w-sm">
-        You are cordially invited to an exclusive private gathering.
-      </p>
+    <div className="page-container">
+      <div className="flex flex-col px-8 pb-8" style={{ gap: 24 }}>
+        {/* Logo */}
+        <div className="flex justify-center items-center" style={{ height: 140 }}>
+          <img src="/logo.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
+        </div>
 
-      <div className="mb-10 space-y-2 text-gray-700">
-        <p className="font-medium text-lg">The Grand Maison</p>
-        <p>Saturday, May 10, 2025</p>
-        <p>8:00 PM — 11:00 PM</p>
-        <p>12 Rue de la Paix, Paris</p>
+        {/* Guest name */}
+        <p
+          className="font-kingdom text-center"
+          style={{ fontSize: 28, lineHeight: '35px', color: '#111111', marginTop: -24 }}
+        >
+          Monsieur<br />Adrien Van Delft
+        </p>
+
+        {/* Invitation card */}
+        <div
+          className="flex flex-col bg-white"
+          style={{
+            borderRadius: 32,
+            padding: '12px 12px 24px 12px',
+            gap: 16,
+            boxShadow: '0 2px 20px rgba(0,0,0,0.08)',
+          }}
+        >
+          {/* Hero image */}
+          <img
+            src="/rolex/assets/invitation-hero.png"
+            alt="Rolex Manufacture"
+            style={{
+              width: '100%',
+              height: 110,
+              objectFit: 'cover',
+              borderRadius: 16,
+              filter: 'brightness(1.1) contrast(0.85) saturate(0.9)',
+            }}
+          />
+
+          {/* Text */}
+          <div className="flex flex-col" style={{ padding: '0 4px', gap: 12 }}>
+            <p style={{ fontSize: 22, fontWeight: 700, lineHeight: '28.6px', color: '#111111', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              Nouvelle collection<br />&amp; manufacture
+            </p>
+            <div className="flex flex-col" style={{ gap: 4 }}>
+              <p style={{ fontSize: 18, lineHeight: '25px', color: '#111111', fontFamily: 'Helvetica, Arial, sans-serif' }}>Vendredi 15 Mai, 2026</p>
+              <p style={{ fontSize: 18, lineHeight: '25px', color: '#111111', fontFamily: 'Helvetica, Arial, sans-serif' }}>9h00 – 21h00</p>
+              <p style={{ fontSize: 18, lineHeight: '25px', color: '#111111', fontFamily: 'Helvetica, Arial, sans-serif' }}>Genève, Suisse</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <button
+          onClick={handleConfirm}
+          className="btn-cta"
+          style={{
+            width: '100%',
+            height: 56,
+            color: '#ffffff',
+            borderRadius: 100,
+            fontSize: 16,
+            fontWeight: 700,
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Je confirme ma venue
+        </button>
       </div>
-
-      <button
-        onClick={handleConfirm}
-        className="px-8 py-3 bg-black text-white text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors"
-      >
-        Confirm my attendance
-      </button>
     </div>
   )
 }

@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap');
+
+@font-face {
+  font-family: 'SangBleu Kingdom';
+  src: url('/rolex/assets/sangbleu-kingdom-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,5 +18,39 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #ffffff;
+}
+
+.page-container {
+  background: linear-gradient(to bottom, #FFFFFF, #E4D7C8);
+  min-height: 100vh;
+  max-width: 393px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+
+  .page-container {
+    min-height: auto;
+    border-radius: 40px;
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+}
+
+.font-kingdom {
+  font-family: 'SangBleu Kingdom', 'Cormorant', Georgia, serif;
+  font-weight: 500;
+}
+
+.btn-cta {
+  background: linear-gradient(135deg, #136941, #1C8A57);
 }

@@ -20,7 +20,7 @@ export default function InviteGuest2() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
         <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">An Evening to Remember</p>
-        <h1 className="text-3xl font-semibold mb-4">See you there, Marc.</h1>
+        <h1 className="text-3xl font-semibold mb-4">See you there, Romain.</h1>
         <p className="text-gray-600">Your attendance has been confirmed. We look forward to welcoming you.</p>
       </div>
     )
@@ -29,7 +29,7 @@ export default function InviteGuest2() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
       <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">An Evening to Remember</p>
-      <h1 className="text-3xl font-semibold mb-2">Dear Marc,</h1>
+      <h1 className="text-3xl font-semibold mb-2">Dear Romain Grossier,</h1>
       <p className="text-gray-600 mb-8 max-w-sm">
         You are cordially invited to an exclusive private gathering.
       </p>
