@@ -1,6 +1,7 @@
 export default function InviteGuest1Confirmed() {
   return (
-    <div className="page-container">
+    <div className="page-container" style={{ minHeight: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      {/* Top content */}
       <div className="flex flex-col px-8" style={{ gap: 24 }}>
         {/* Logo */}
         <div className="flex justify-center items-center" style={{ height: 140 }}>
@@ -23,6 +24,29 @@ export default function InviteGuest1Confirmed() {
           <p style={{ fontSize: 18, lineHeight: '26px', color: '#111111', textAlign: 'center', fontFamily: 'Helvetica Neue, Helvetica, sans-serif' }}>
             Dans l'attente de vous accueillir, nous vous invitons à conserver précieusement votre carte : elle facilitera votre accueil.
           </p>
+        </div>
+      </div>
+
+      {/* Card — 265x396, top 48px below text, extends below fold */}
+      <div style={{ marginTop: 48, display: 'flex', justifyContent: 'center' }}>
+        <div
+          style={{
+            width: 265,
+            height: 396,
+            borderRadius: 32,
+            background: 'linear-gradient(to top right, #B9966F, #FCF6E9)',
+            boxShadow: '-4px 4px 32px rgba(0, 0, 0, 0.12)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src="/rolex/assets/logo-plain.png"
+            alt="Rolex"
+            style={{ width: 29, height: 32, objectFit: 'contain', opacity: 0.5 }}
+          />
         </div>
       </div>
     </div>
