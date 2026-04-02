@@ -89,6 +89,7 @@ export default function CheckinGuest1() {
         fontSize: 18, lineHeight: '19.8px',
         fontFamily: 'Helvetica, Arial, sans-serif',
         color: '#111111', opacity: 0.5,
+        whiteSpace: 'nowrap',
       }}>
         Présentez votre carte
       </p>
