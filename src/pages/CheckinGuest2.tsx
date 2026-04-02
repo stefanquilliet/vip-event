@@ -84,8 +84,8 @@ export default function CheckinGuest2() {
       <p style={{
         position: 'absolute',
         top: 'calc(50% + 230px)',
-        left: 0, right: 0,
-        textAlign: 'center',
+        left: '50%',
+        transform: 'translateX(-50%)',
         fontSize: 18, lineHeight: '19.8px',
         fontFamily: 'Helvetica, Arial, sans-serif',
         color: '#111111', opacity: 0.5,
