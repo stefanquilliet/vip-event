@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 export default function WelcomeGuest2() {
   useEffect(() => {
+    document.title = 'Event · Welcome'
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])

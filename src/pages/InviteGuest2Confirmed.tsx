@@ -1,15 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const STORAGE_KEY = 'checkin-guest-1'
-
-export default function CheckinGuest1() {
+export default function InviteGuest2Confirmed() {
   const cardRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
-    document.title = 'Event · Check-in'
-    localStorage.setItem(STORAGE_KEY, 'true')
+    document.title = 'Event · Confirmation'
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])
@@ -22,8 +19,8 @@ export default function CheckinGuest1() {
       const tiltY = Math.max(-45, Math.min(45, beta - 45)) / 45
       const angle = 45 + tiltX * 25 + tiltY * 15
       const shadowX = -4 + tiltX * 10
-      const shadowY = -4 - tiltY * 10
-      const shadowBlur = 32 + Math.abs(tiltX) * 16
+      const shadowY = 4 - tiltY * 10
+      const shadowBlur = 24 + Math.abs(tiltX) * 16
       if (cardRef.current) {
         cardRef.current.style.background = `linear-gradient(${angle}deg, #B9966F, #FCF6E9)`
         cardRef.current.style.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, 0.12)`
@@ -58,40 +55,37 @@ export default function CheckinGuest1() {
   }, [])
 
   return (
-    <div className="page-container" style={{ height: '100dvh', position: 'relative' }}>
-      {/* Card — absolutely centered, gyroscope moves card only, not wrapper */}
-      <div style={{
-        position: 'absolute', top: '50%', left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 265, height: 396,
-      }}>
+    <div className="page-container" style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
+      <div className="flex flex-col px-8" style={{ paddingTop: 48 }}>
+        <div className="flex justify-center">
+          <img src="/rolex/assets/logo-3d.png" alt="Rolex" style={{ width: 37, height: 40, objectFit: 'contain' }} />
+        </div>
+        <p className="font-kingdom text-center" style={{ fontSize: 28, lineHeight: '35px', color: '#111111', marginTop: 48 }}>Confirmé</p>
+        <div className="flex flex-col" style={{ gap: 12, marginTop: 12 }}>
+          <p style={{ fontSize: 18, lineHeight: '26px', color: '#111111', textAlign: 'center', fontFamily: 'Helvetica Neue, Helvetica, sans-serif' }}>
+            Notre équipe vous contactera sous 2 jours pour coordonner les détails de votre visite.
+          </p>
+          <p style={{ fontSize: 18, lineHeight: '26px', color: '#111111', textAlign: 'center', fontFamily: 'Helvetica Neue, Helvetica, sans-serif' }}>
+            Dans l'attente de vous accueillir, nous vous invitons à conserver précieusement votre carte : elle facilitera votre accueil.
+          </p>
+        </div>
+      </div>
+      <div style={{ marginTop: 48, display: 'flex', justifyContent: 'center' }}>
         <div
           ref={cardRef}
-          onClick={() => navigate('/welcome-adrien')}
+          onClick={() => navigate('/checkin-romain')}
           style={{
-            width: '100%', height: '100%', borderRadius: 32,
+            width: 265, height: 396, borderRadius: 32,
             background: 'linear-gradient(45deg, #B9966F, #FCF6E9)',
-            boxShadow: '-4px -4px 32px rgba(0, 0, 0, 0.12)',
+            boxShadow: '-4px 4px 32px rgba(0, 0, 0, 0.12)',
             transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer',
+            flexShrink: 0, cursor: 'pointer',
           }}
         >
           <img src="/rolex/assets/logo-plain.png" alt="Rolex" style={{ width: 29, height: 32, objectFit: 'contain', opacity: 0.5 }} />
         </div>
       </div>
-      {/* Text — 32px below card bottom edge */}
-      <p style={{
-        position: 'absolute',
-        top: 'calc(50% + 230px)',
-        left: 0, right: 0,
-        textAlign: 'center',
-        fontSize: 18, lineHeight: '19.8px',
-        fontFamily: 'Helvetica, Arial, sans-serif',
-        color: '#111111', opacity: 0.5,
-      }}>
-        Présentez votre carte
-      </p>
     </div>
   )
 }

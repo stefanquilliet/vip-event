@@ -7,13 +7,14 @@ export default function InviteGuest1() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    document.title = 'Event · RSVP'
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])
 
   function handleConfirm() {
     localStorage.setItem(STORAGE_KEY, 'true')
-    navigate('/invite-guest-1/confirmed')
+    navigate('/invite-adrien/confirmed')
   }
 
   return (
